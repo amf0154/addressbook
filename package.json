@@ -1,0 +1,20 @@
+{
+  "name": "nodeApiSkeleton",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Bykovsky Gleb",
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/amf0154/nodeApiSkeleton"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "mongoose": "^5.3.13"
+  }
+}
