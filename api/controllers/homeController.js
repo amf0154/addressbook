@@ -14,23 +14,14 @@ function index (req, res, next){
 
 function addContact (req, res, next){
   var newNote = new addrbook();
-  /*
-  newNote.fio = "Medvedev Artem Nikolaevich";
-  newNote.address = "Belarus, gomel, ul Kosareva 12, dom 5";
-  newNote.cellphone = '55782564';
-  newNote.company = "GAZPROM";
-  newNote.position = "System Administrator";
-  newNote.idgroup = '5';
-  newNote.label = 'don\'t forget to help him';
-  */
- if(req.params.fio){
-  newNote.fio = req.params.fio;
-  newNote.address = req.params.address;
-  newNote.cellphone = req.params.cellphone;
-  newNote.company = req.params.company;
-  newNote.position = req.params.position;
-  newNote.idgroup = req.params.idgroup;
-  newNote.label = req.params.label;
+  if(req.body.fio){
+  newNote.fio = req.body.fio;
+  newNote.address = req.body.address;
+  newNote.cellphone = req.body.cellphone;
+  newNote.company = req.body.company;
+  newNote.position = req.body.position;
+  newNote.idgroup = req.body.idgroup;
+  newNote.label = req.body.label;
   newNote.createdOn = new Date();
   newNote.save(function(err) {
     if(!err){
@@ -42,6 +33,7 @@ function addContact (req, res, next){
 }else{
   res.status(200).json({'error_message' : 'req params are empty'});
 }
+
 }
 
 function getNoteById (req, res) {

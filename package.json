@@ -1,5 +1,5 @@
 {
-  "name": "Address book",
+  "name": "Contact book",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -8,13 +8,15 @@
   },
   "author": "Bykovsky Gleb",
   "repository": {
-    "type" : "git",
-    "url" : "https://github.com/amf0154/nodeApiSkeleton"
+    "type": "git",
+    "url": "https://github.com/amf0154/nodeApiSkeleton"
   },
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.18.3",
+    "cors": "^2.8.5",
     "express": "^4.16.4",
-    "mongoose": "^5.3.13"
+    "mongoose": "^5.3.13",
+    "morgan": "^1.9.1"
   }
 }

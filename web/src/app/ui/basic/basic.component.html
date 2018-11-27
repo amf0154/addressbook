@@ -1,7 +1,30 @@
-<div class="jumbotron">
-    <h1>Angular + Bootstrap & FontAwesome</h1>
-    <p>
-      There are will be something cool soon!
-    </p>
-  </div>
+ 
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Contact</th>
+          <th scope="col">Phone</th>
+          <th scope="col">Company</th>
+          <th scope="col">Position</th> 
+          <th scope="col">Show</th>   
+          <th scope="col">Edit</th> 
+          <th scope="col">Delete</th>       
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let contact of contacts; index as i">
+          <th scope="row">{{i+1}}</th>
+          <td>{{contact.fio}}</td>
+          <td>{{contact.cellphone}}</td>
+          <td>{{contact.company}}</td>
+          <td>{{contact.position}}</td>
+          <td><button type="button" class="btn btn-primary btn-sm">Show</button></td>
+          <td><button type="button" class="btn btn-warning btn-sm">Edit</button></td>
+          <td><button type="button" class="btn btn-danger btn-sm">Delete</button></td>
+        </tr>
+
+      </tbody>
+    </table>
+ 
 
