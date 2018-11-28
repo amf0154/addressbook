@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { SendDataService } from '../send-data.service';
+import { AddresesService } from '../addreses.service';
 import {Router} from "@angular/router";
 @Component({
   selector: 'app-new-contact',
@@ -9,7 +9,7 @@ import {Router} from "@angular/router";
 })
 export class NewContactComponent implements OnInit {
   myFirstReactiveForm: FormGroup;
-  constructor(private fb: FormBuilder, private _sendData:SendDataService,private router: Router) { }
+  constructor(private fb: FormBuilder, private _sendData:AddresesService,private router: Router) { }
   public contact;
   ngOnInit() {
     this.initForm();

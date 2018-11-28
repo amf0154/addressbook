@@ -12,6 +12,7 @@ export class BasicComponent implements OnInit {
   ngOnInit() {
     this._addressesService.getContacts()
     .subscribe(data => this.contacts = data);
+    
   }
 
 }
