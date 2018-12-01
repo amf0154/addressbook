@@ -11,6 +11,7 @@ export class NewContactComponent implements OnInit {
   myFirstReactiveForm: FormGroup;
   constructor(private fb: FormBuilder, private _sendData:AddresesService,private router: Router) { }
   public contact;
+  public idgroup = ['partners','competitors','staff'];
   ngOnInit() {
     this.initForm();
   }
@@ -45,11 +46,6 @@ export class NewContactComponent implements OnInit {
         Validators.required,
         Validators.pattern(/[0-9]/)
        ]
-      ],
-      label: ['', [
-        Validators.required,
-        Validators.pattern(/[a-zA-Z0-9._]/)
-       ]
       ]
      });
   }
@@ -59,7 +55,13 @@ export class NewContactComponent implements OnInit {
     const control = this.myFirstReactiveForm.controls[controlName];
     const result = control.invalid && control.touched;
     return result;
-    }
+  }
+
+  isControlInvalidOnlyNumbers(controlName: string): boolean {
+    const control = this.myFirstReactiveForm.controls[controlName];
+    const result = control.invalid && control.touched;
+    return result;
+  }
 
 
 
