@@ -10,12 +10,14 @@ import {HttpClientModule} from '@angular/common/http';
 import { NewContactComponent } from './new-contact/new-contact.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { PageDetailComponent } from './page-detail/page-detail.component';
 
 const appRoutes : Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: BasicComponent},
   { path: 'add', component: NewContactComponent},
-  { path: 'test', component: TestComponent}
+  { path: 'test', component: TestComponent},
+  { path: 'view/:id', component: PageDetailComponent}
   ];
 
 @NgModule({
@@ -26,7 +28,10 @@ const appRoutes : Routes = [
     ReactiveFormsModule,
     NgxPaginationModule
   ],
-  declarations: [LayoutComponent, TestComponent, HeaderComponent, FooterComponent, BasicComponent, NewContactComponent],
+  declarations: [LayoutComponent, TestComponent, HeaderComponent, FooterComponent, BasicComponent, NewContactComponent, PageDetailComponent],
   exports: [LayoutComponent]
 })
+
+
 export class UiModule { }
+export const routingComponent = [PageDetailComponent];
