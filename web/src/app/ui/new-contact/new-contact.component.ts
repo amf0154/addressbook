@@ -2,16 +2,18 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AddresesService } from '../addreses.service';
 import {Router} from "@angular/router";
+import { Config } from '../config';
 @Component({
   selector: 'app-new-contact',
   templateUrl: './new-contact.component.html',
   styleUrls: ['./new-contact.component.css']
 })
 export class NewContactComponent implements OnInit {
+  private cfg = new Config;
   myFirstReactiveForm: FormGroup;
-  constructor(private fb: FormBuilder, private _sendData:AddresesService,private router: Router) { }
+  constructor(private fb: FormBuilder, private _sendData:AddresesService, private router: Router) { }
   public contact;
-  public idgroup = ['partners','competitors','staff'];
+  public idgroup = this.cfg.idgroup;
   ngOnInit() {
     this.initForm();
   }
@@ -42,6 +44,7 @@ export class NewContactComponent implements OnInit {
         Validators.pattern(/[A-w]/)
        ]
       ],
+      label: [''],
       idgroup: ['', [
         Validators.required,
         Validators.pattern(/[0-9]/)
