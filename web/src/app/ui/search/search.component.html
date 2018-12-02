@@ -1,0 +1,26 @@
+<table class="table table-bordered">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Contact</th>
+        <th scope="col">Phone</th>
+        <th scope="col">Company</th>
+        <th scope="col">Position</th> 
+        <th scope="col">Show</th>   
+        <th scope="col">Edit</th> 
+        <th scope="col">Delete</th>       
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let contact of contacts.reverse() | grdFilter: {fio: search_value, cellphone:search_value, company: search_value, label: search_value, address: search_value}; index as i">
+        <th scope="row">{{i+1}}</th>
+        <td>{{contact.fio}}</td>
+        <td>{{contact.cellphone}}</td>
+        <td>{{contact.company}}</td>
+        <td>{{contact.position}}</td>
+        <td><button type="button" (click)="onShow(contact)" class="btn btn-primary btn-sm">Show</button></td>
+        <td><button type="button" (click)="onEdit(contact)" class="btn btn-warning btn-sm">Edit</button></td>
+        <td><button type="button" (click)="onRemove(contact)" class="btn btn-danger btn-sm">Delete</button></td>
+      </tr>
+    </tbody>
+  </table>

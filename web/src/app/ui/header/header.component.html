@@ -8,6 +8,10 @@
     </div>
   </div>
   <div class="navbar-expand ml-auto navbar-nav">
+    <div class="form-inline active-purple-4">
+      <input class="form-control form-control-sm mr-1 w-45" [(ngModel)]="search_value" type="text" placeholder="Search" aria-label="Search">
+      <i class="fa fa-search" (click)="onSearch()" aria-hidden="true"></i>
+    </div>
     <div class="navbar-nav">
       <a class="nav-item nav-link" href="https://github.com/amf0154" target="_blank">
         <i class="fa fa-github"></i>

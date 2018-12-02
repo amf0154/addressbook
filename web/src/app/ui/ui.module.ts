@@ -13,6 +13,9 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { PageDetailComponent } from './page-detail/page-detail.component';
 import { EditContactComponent } from './edit-contact/edit-contact.component';
 import { NotFoundPageComponent } from './not-found-page/not-found-page.component';
+import { FormsModule } from '@angular/forms';
+import { SearchComponent } from './search/search.component';
+import { GrdFilterPipe } from './grd-filter.pipe';
 
 const appRoutes : Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -21,22 +24,24 @@ const appRoutes : Routes = [
   { path: 'about', component: TestComponent},
   { path: 'view/:id', component: PageDetailComponent},
   { path: 'update/:id', component: EditContactComponent},
-  { path: '**', component: NotFoundPageComponent},
-  { path: 'error404', component: NotFoundPageComponent}
+  { path: 'error404', component: NotFoundPageComponent},
+  { path: 'search/:word', component: SearchComponent},
+  { path: '**', component: NotFoundPageComponent}
   ];
 
 @NgModule({
   imports: [
-    CommonModule,
+    CommonModule, 
+    FormsModule,     
     RouterModule.forRoot(appRoutes),
     HttpClientModule,
     ReactiveFormsModule,
     NgxPaginationModule
   ],
-  declarations: [LayoutComponent, TestComponent, HeaderComponent, FooterComponent, BasicComponent, NewContactComponent, PageDetailComponent, EditContactComponent, NotFoundPageComponent],
+  declarations: [LayoutComponent, TestComponent, HeaderComponent, FooterComponent, BasicComponent, NewContactComponent, PageDetailComponent, EditContactComponent, NotFoundPageComponent, SearchComponent, GrdFilterPipe],
   exports: [LayoutComponent]
 })
 
 
 export class UiModule { }
-export const routingComponent = [PageDetailComponent];
+export const routingComponent = [PageDetailComponent,SearchComponent];
