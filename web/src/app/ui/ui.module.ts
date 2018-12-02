@@ -16,6 +16,9 @@ import { NotFoundPageComponent } from './not-found-page/not-found-page.component
 import { FormsModule } from '@angular/forms';
 import { SearchComponent } from './search/search.component';
 import { GrdFilterPipe } from './grd-filter.pipe';
+import {enableProdMode} from '@angular/core';
+
+enableProdMode();
 
 const appRoutes : Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },

@@ -2,7 +2,6 @@
     <table class="table table-bordered">
       <thead>
         <tr>
-          <th scope="col">#</th>
           <th scope="col">Contact</th>
           <th scope="col">Phone</th>
           <th scope="col">Company</th>
@@ -13,8 +12,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let contact of contacts.reverse() | paginate: { itemsPerPage: 5, currentPage: p }; index as i">
-          <th scope="row">{{i+1}}</th>
+        <tr *ngFor="let contact of contacts | paginate: { itemsPerPage: 5, currentPage: p }">
           <td>{{contact.fio}}</td>
           <td>{{contact.cellphone}}</td>
           <td>{{contact.company}}</td>

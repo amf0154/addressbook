@@ -22,7 +22,7 @@ export class BasicComponent implements OnInit {
   onEdit(contact){
     this.router.navigate(['/update',contact._id]);
   }
-
+  
   onRemove(contact){
     this._addressesService.deleteContactById(contact._id)
     .subscribe(data =>{console.log(data)},error=>{console.log(error)});
