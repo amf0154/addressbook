@@ -20,5 +20,8 @@ export class PageDetailComponent implements OnInit {
   getNameGroupById(id){
     return this.cfg.idgroup[id];
   }
+  checkLabelData(contact){
+    return (contact.label)? contact.label : 'empty';
+  }
 
 }

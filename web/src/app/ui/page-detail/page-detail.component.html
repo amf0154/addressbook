@@ -1,12 +1,12 @@
 <div class="jumbotron">
 
-  
-  <p>{{contact.fio}}</p>
-  <p>{{contact.address}}</p>
-  <p>{{contact.cellphone}}</p>
-  <p>{{contact.company}}</p>
-  <p>{{contact.position}}</p>
-  <p>{{getNameGroupById(contact.idgroup)}}</p>
-  <p>{{contact.label}}</p>
+  <p><b>Initials: </b> {{contact.fio}}</p>
+  <p><b>Address: </b>{{contact.address}}</p>
+  <p><b>Cellphone: </b>{{contact.cellphone}}</p>
+  <p><b>Company: </b>{{contact.company}}</p>
+  <p><b>Position: </b>{{contact.position}}</p>
+  <p><b>Group: </b>{{getNameGroupById(contact.idgroup)}}</p>
+  <p><b>Label: </b>{{checkLabelData(contact)}}</p>
+  <p><a class="btn btn-primary btn-sm" routerLink="/home" href="#">Go back</a></p>
 
 </div>

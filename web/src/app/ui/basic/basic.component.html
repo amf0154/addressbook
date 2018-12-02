@@ -13,15 +13,15 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let contact of contacts.reverse() | paginate: { itemsPerPage: 4, currentPage: p }; index as i">
+        <tr *ngFor="let contact of contacts.reverse() | paginate: { itemsPerPage: 5, currentPage: p }; index as i">
           <th scope="row">{{i+1}}</th>
           <td>{{contact.fio}}</td>
           <td>{{contact.cellphone}}</td>
           <td>{{contact.company}}</td>
           <td>{{contact.position}}</td>
           <td><button type="button" (click)="onShow(contact)" class="btn btn-primary btn-sm">Show</button></td>
-          <td><button type="button" class="btn btn-warning btn-sm">Edit</button></td>
-          <td><button type="button" class="btn btn-danger btn-sm">Delete</button></td>
+          <td><button type="button" (click)="onEdit(contact)" class="btn btn-warning btn-sm">Edit</button></td>
+          <td><button type="button" (click)="onRemove(contact)" class="btn btn-danger btn-sm">Delete</button></td>
         </tr>
       </tbody>
     </table>

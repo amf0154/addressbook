@@ -11,13 +11,17 @@ import { NewContactComponent } from './new-contact/new-contact.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { PageDetailComponent } from './page-detail/page-detail.component';
+import { EditContactComponent } from './edit-contact/edit-contact.component';
+import { NotFoundPageComponent } from './not-found-page/not-found-page.component';
 
 const appRoutes : Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: BasicComponent},
   { path: 'add', component: NewContactComponent},
   { path: 'test', component: TestComponent},
-  { path: 'view/:id', component: PageDetailComponent}
+  { path: 'view/:id', component: PageDetailComponent},
+  { path: 'update/:id', component: EditContactComponent},
+  { path: '**', component: NotFoundPageComponent}
   ];
 
 @NgModule({
@@ -28,7 +32,7 @@ const appRoutes : Routes = [
     ReactiveFormsModule,
     NgxPaginationModule
   ],
-  declarations: [LayoutComponent, TestComponent, HeaderComponent, FooterComponent, BasicComponent, NewContactComponent, PageDetailComponent],
+  declarations: [LayoutComponent, TestComponent, HeaderComponent, FooterComponent, BasicComponent, NewContactComponent, PageDetailComponent, EditContactComponent, NotFoundPageComponent],
   exports: [LayoutComponent]
 })
 

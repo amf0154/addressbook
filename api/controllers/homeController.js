@@ -31,9 +31,34 @@ function addContact (req, res, next){
     }
   }); //end save
 }else{
-  res.status(200).json({'error_message' : 'req params are empty'});
+  res.status(200).json({'error_message' : 'Incorrect req params'});
+}
 }
 
+
+function updateContact (req, res, next){
+  if(req.body.fio){
+    addrbook
+      .findById(req.body.id, function (err, updNote) {
+      updNote.fio = req.body.fio;
+      updNote.address = req.body.address;
+      updNote.cellphone = req.body.cellphone;
+      updNote.company = req.body.company;
+      updNote.position = req.body.position;
+      updNote.idgroup = req.body.idgroup;
+      updNote.label = req.body.label;
+      updNote.createdOn = new Date();
+      updNote.save(function(err) {
+      if(!err){
+        res.status(200).json("it's ok! user has just been updated successfully!");
+      }else{
+        res.status(200).json({'error_message' : 'oops, something has gone wrong...'});
+      }
+    }); //end save
+  });
+}else{
+  res.status(200).json({'error_message' : 'Incorrect req params'});
+}
 }
 
 function getNoteById (req, res) {
@@ -41,9 +66,22 @@ function getNoteById (req, res) {
    .findById(req.params.id)
     .exec(function(err, data){
       if(err){
-          sendJsonResponse(res, 404, {'error_message' :'object with such id hasn\'t found'});   
+          sendJsonResponse(res, 404, {'error_message' :'object with such id hasn\'t been found'});   
       }else{ 
           sendJsonResponse(res, 200, data);   
+      } 
+    });
+};
+
+function deleteNoteById(req, res) {
+  addrbook
+   .findById(req.params.id)
+   .deleteOne()
+    .exec(function(err, data){
+      if(err){
+          sendJsonResponse(res, 404, {'error_message' :'object with such id hasn\'t found'});   
+      }else{ 
+          sendJsonResponse(res, 200, {'result' :'done!'});   
       } 
     });
 };
@@ -63,6 +101,8 @@ function getAllAdverts(req, res) {
   module.exports = {
     index,
     addContact,
+    updateContact,
     getNoteById,
+    deleteNoteById,
     getAllAdverts
   };

@@ -12,6 +12,8 @@ export class AddresesService {
   private _urlSendData = this.cfg.api_url + '/add';
   private _urlGetDataById = this.cfg.api_url + '/get/';
   private _urlGetData = this.cfg.api_url + '/getall';
+  private _urlRemoveDataById = this.cfg.api_url + '/rem/';
+  private _urlUpdateDataById = this.cfg.api_url + '/upd/';
   constructor(private http: HttpClient) { }
   getContacts():Observable<IContacts[]>{
     return this.http.get<IContacts[]>(this._urlGetData);
@@ -25,4 +27,13 @@ export class AddresesService {
    getContactById(id):Observable<IContacts>{
     return this.http.get<IContacts>(this._urlGetDataById + id);
   }
+  deleteContactById(id):Observable<IContacts>{
+    return this.http.get<IContacts>(this._urlRemoveDataById + id);
+  }
+  updateContact(contact:Contact): Observable<Contact>{
+    const httpOptions = {
+    headers: new HttpHeaders({'Content-Type':  'application/json'})
+    };
+    return this.http.post<Contact>(this._urlUpdateDataById, contact, httpOptions);
+  } 
 }

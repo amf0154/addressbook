@@ -1,21 +1,58 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Router, ParamMap, ActivatedRoute } from '@angular/router';
 import { AddresesService } from '../addreses.service';
-import {Router} from "@angular/router";
 import { Config } from '../config';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { config } from 'rxjs';
+import { timeout } from 'q';
 @Component({
-  selector: 'app-new-contact',
-  templateUrl: './new-contact.component.html',
-  styleUrls: ['./new-contact.component.css']
+  selector: 'app-edit-contact',
+  templateUrl: './edit-contact.component.html',
+  styleUrls: ['./edit-contact.component.css']
 })
-export class NewContactComponent implements OnInit {
+export class EditContactComponent implements OnInit {
   private cfg = new Config;
-  myFirstReactiveForm: FormGroup;
-  constructor(private fb: FormBuilder, private _sendData:AddresesService, private router: Router) { }
-  public contact;
   public idgroup = this.cfg.idgroup;
+  myFirstReactiveForm: FormGroup;
+  public currentContactData: any = {};
+  public contact;
+  public updButton = false;
+  constructor(private fb: FormBuilder, private route: ActivatedRoute, private router: Router, private addresesService:AddresesService) { }
   ngOnInit() {
-    this.initForm();
+    this.route.paramMap.subscribe((params: ParamMap) =>{
+      this.addresesService.getContactById(params.get('id'))
+      .subscribe(data => {this.currentContactData = data},error =>{console.log(error)},()=>{this.initForm()});
+    });
+  this.initForm(); 
+  setTimeout(() => this.onFillInForm(), 500);
+  }
+  
+  onFillInForm(){
+    if(this.currentContactData.fio){
+      this.myFirstReactiveForm.setValue({
+      fio: this.currentContactData.fio,
+      address: this.currentContactData.address,
+      cellphone: this.currentContactData.cellphone,
+      company: this.currentContactData.company,
+      position: this.currentContactData.position,
+      label: (this.currentContactData.label) ? this.currentContactData.label : '',
+      idgroup: this.currentContactData.idgroup
+      });
+    }else{
+   //   this.updButton = true;
+      this.updButton = true;
+      this.myFirstReactiveForm.get('fio').disable();
+      this.myFirstReactiveForm.get('address').disable();
+      this.myFirstReactiveForm.get('cellphone').disable();
+      this.myFirstReactiveForm.get('company').disable();
+      this.myFirstReactiveForm.get('position').disable();
+      this.myFirstReactiveForm.get('idgroup').disable();
+      this.myFirstReactiveForm.get('label').disable();
+      this.router.navigate(['/error404']);
+    }
+    
+
+
   }
   initForm(){
     this.myFirstReactiveForm = this.fb.group({
@@ -79,7 +116,8 @@ export class NewContactComponent implements OnInit {
          return;
         }else{
           this.contact = this.myFirstReactiveForm.value;
-          let newContact = {
+          let updContact = {
+            "id" : this.currentContactData._id,
             "fio" : this.contact.fio,
             "address": this.contact.address,
             "cellphone": this.contact.cellphone,
@@ -88,7 +126,9 @@ export class NewContactComponent implements OnInit {
             "idgroup": this.contact.idgroup,
             "label": this.contact.label
           }
-          this._sendData.sendContact(newContact)
+          console.log(updContact);
+          
+          this.addresesService.updateContact(updContact)
           .subscribe(data=>{},
             error =>{
               console.log(error)   
@@ -96,7 +136,9 @@ export class NewContactComponent implements OnInit {
               this.router.navigate(['/home']);
               }
             );
+            
         }  
 
-  }
+  }  
+
 }
