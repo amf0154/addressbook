@@ -39,7 +39,6 @@ export class EditContactComponent implements OnInit {
       idgroup: this.currentContactData.idgroup
       });
     }else{
-   //   this.updButton = true;
       this.updButton = true;
       this.myFirstReactiveForm.get('fio').disable();
       this.myFirstReactiveForm.get('address').disable();
@@ -68,7 +67,8 @@ export class EditContactComponent implements OnInit {
       ],
       cellphone: ['', [
         Validators.required,
-        Validators.pattern(/[0-9]/)
+        Validators.pattern('^[0-9]*$'),
+        Validators.minLength(8)
        ]
       ],
       company: ['', [
@@ -84,7 +84,7 @@ export class EditContactComponent implements OnInit {
       label: [''],
       idgroup: ['', [
         Validators.required,
-        Validators.pattern(/[0-9]/)
+        Validators.pattern('^[0-9]*$')
        ]
       ]
      });
@@ -97,7 +97,7 @@ export class EditContactComponent implements OnInit {
     return result;
   }
 
-  isControlInvalidOnlyNumbers(controlName: string): boolean {
+  isControlInvalidOnlyNumbers(controlName: number): boolean {
     const control = this.myFirstReactiveForm.controls[controlName];
     const result = control.invalid && control.touched;
     return result;
@@ -126,8 +126,6 @@ export class EditContactComponent implements OnInit {
             "idgroup": this.contact.idgroup,
             "label": this.contact.label
           }
-          console.log(updContact);
-          
           this.addresesService.updateContact(updContact)
           .subscribe(data=>{},
             error =>{
