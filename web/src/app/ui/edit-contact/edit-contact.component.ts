@@ -13,6 +13,7 @@ import { timeout } from 'q';
 export class EditContactComponent implements OnInit {
   private cfg = new Config;
   public idgroup = this.cfg.idgroup;
+  showSpinner: boolean = true;
   myFirstReactiveForm: FormGroup;
   public currentContactData: any = {};
   public contact;
@@ -24,7 +25,10 @@ export class EditContactComponent implements OnInit {
       .subscribe(data => {this.currentContactData = data},error =>{console.log(error)},()=>{this.initForm()});
     });
   this.initForm(); 
-  setTimeout(() => this.onFillInForm(), 500);
+  setTimeout(() => {
+    this.onFillInForm(),
+    this.showSpinner = false;
+  }, 500);
   }
   
   onFillInForm(){

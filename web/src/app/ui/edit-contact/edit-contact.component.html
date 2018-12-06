@@ -1,4 +1,5 @@
 
+<app-loading-spinner *ngIf="showSpinner"></app-loading-spinner>
 <form [formGroup]="myFirstReactiveForm" (submit)="onSubmit()">
     <div class="form-group">
   <label for="fio">Initials:</label>

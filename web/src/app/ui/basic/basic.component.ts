@@ -8,11 +8,14 @@ import {Router} from "@angular/router";
 })
 export class BasicComponent implements OnInit {
   public contacts =[];
+  showSpinner: boolean = true;
   constructor(private _addressesService: AddresesService,private router: Router) { }
 
   ngOnInit() {
     this._addressesService.getContacts()
-    .subscribe(data => this.contacts = data);
+    .subscribe(()=> this.showSpinner = false);
+    this._addressesService.getContacts()
+    .subscribe(data =>this.contacts = data);
     
   }
   onShow(contact){

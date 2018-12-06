@@ -17,6 +17,7 @@ import { FormsModule } from '@angular/forms';
 import { SearchComponent } from './search/search.component';
 import { GrdFilterPipe } from './grd-filter.pipe';
 import {enableProdMode} from '@angular/core';
+import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
 
 enableProdMode();
 
@@ -41,7 +42,7 @@ const appRoutes : Routes = [
     ReactiveFormsModule,
     NgxPaginationModule
   ],
-  declarations: [LayoutComponent, TestComponent, HeaderComponent, FooterComponent, BasicComponent, NewContactComponent, PageDetailComponent, EditContactComponent, NotFoundPageComponent, SearchComponent, GrdFilterPipe],
+  declarations: [LayoutComponent, TestComponent, HeaderComponent, FooterComponent, BasicComponent, NewContactComponent, PageDetailComponent, EditContactComponent, NotFoundPageComponent, SearchComponent, GrdFilterPipe, LoadingSpinnerComponent],
   exports: [LayoutComponent]
 })
 
